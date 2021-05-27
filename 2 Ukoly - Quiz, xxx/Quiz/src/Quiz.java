@@ -1,19 +1,25 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
+import java.util.Scanner;
 
 public class Quiz {
 
 	public void start() {
 		try {
-			BufferedReader csvReader = new BufferedReader(new FileReader("quiz.csv"));
-			String row;
-			while ((row = csvReader.readLine()) != null) {
-			    String[] data = row.split(",");
-			    for(int i = 0; i < data.length; i++) {
-			    	System.out.println(data[i] + "SSSSSS ");
-			    }
+			// Get scanner instance
+			Scanner scanner = new Scanner(new File("quiz.csv"));
+
+			// Set the delimiter used in file
+			scanner.useDelimiter("; ");
+
+			// Get all tokens and store them in some data structure
+			// I am just printing them
+			while (scanner.hasNext()) {
+				System.out.print(scanner.next() + "|");
 			}
-			csvReader.close();
+
+			// Do not forget to close the scanner
+			scanner.close();
+
 		} catch (Exception ex) {
 			System.err.println(ex);
 		}
